@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: sqlite-init
+data:
+  init-data.sh: |
+    #!/bin/bash
+    set -e;
+    echo "SETUP INFO: SQLite does not require additional setup scripts!"

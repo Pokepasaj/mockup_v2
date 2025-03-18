@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "k8s-libsonnet": "github:nr8-io/k8s-libsonnet",
+    "konn": "github:nr8-io/konn"
+  }
+}

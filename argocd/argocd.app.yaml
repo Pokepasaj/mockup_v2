@@ -1,0 +1,19 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: n8n
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/Pokepasaj/mockup_v2
+    targetRevision: HEAD
+    path: templates
+    directory:
+      jsonnet:
+        libs:
+        - node_modules/konn
+        - node_modules/k8s-libsonnet/1.32
+        - namespace
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: n8n-namespace

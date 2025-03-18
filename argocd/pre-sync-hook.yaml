@@ -1,0 +1,28 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: install-dependencies
+  namespace: argocd
+  labels:
+    argocd.argoproj.io/hook: PreSync
+spec:
+  template:
+    spec:
+      containers:
+      - name: install-dependencies
+        image: node:14
+        command: ["/bin/sh", "-c"]
+        args:
+          - |
+            if [ -d "/repo" ]; then
+              rm -rf /repo/*;
+            fi;
+            git clone https://github.com/Pokepasaj/mockup_v2 /repo && \
+            cd /repo && npm install
+        volumeMounts:
+        - name: repo
+          mountPath: /repo
+      restartPolicy: OnFailure
+      volumes:
+      - name: repo
+        emptyDir: {}

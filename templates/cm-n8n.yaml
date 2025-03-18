@@ -1,0 +1,23 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: nginx
+data:
+  default.conf: |
+    server {
+      listen 8080 default_server;
+      listen [::]:8080 default_server ipv6only=on;
+
+    location / {
+        proxy_pass http://localhost:5678;
+        proxy_http_version 1.1;
+        proxy_set_header Connection '';
+        chunked_transfer_encoding off;
+        proxy_buffering off;
+        proxy_cache off;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection “upgrade”;
+        proxy_set_header Host $host;
+      }
+    }

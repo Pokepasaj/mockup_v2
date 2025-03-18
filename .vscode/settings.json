@@ -1,0 +1,13 @@
+{
+    "jsonnet.languageServer.jpath": [
+      "./",
+      "./lib",  
+      "./vendor",
+      "./node_modules"
+      // you need to point to konn and/or other libsonnet you will be referring to here
+    ],
+    "jsonnet.languageServer.resolvePathsWithTanka": true,
+    "cSpell.words": [
+      "multisite"
+    ]
+  }

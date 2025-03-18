@@ -1,0 +1,52 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    service: sqlite-n8n
+  name: sqlite
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      service: sqlite-n8n
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        service: sqlite-n8n
+    spec:
+      containers:
+        - image: n8nio/n8n:latest
+          name: n8n
+          resources:
+            limits:
+              cpu: "2"
+              memory: 2Gi
+            requests:
+              cpu: "1"
+              memory: 1Gi
+          ports:
+            - containerPort: 5678
+          volumeMounts:
+            - name: sqlite-pv
+              mountPath: /data
+          env:
+            - name: N8N_PORT
+              value: "5678"
+            - name: DB_TYPE
+              value: "sqlite"
+            - name: DB_SQLITE_DATABASE
+              value: "/data/database.sqlite"
+      restartPolicy: Always
+      volumes:
+        - name: sqlite-pv
+          persistentVolumeClaim:
+            claimName: sqlite-pv
+        - name: sqlite-init
+          configMap:
+            name: sqlite-init
+            defaultMode: 0744
