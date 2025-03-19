@@ -140,3 +140,13 @@ spec:
   resources:
     requests:
       storage: 2Gi
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: n8n-basic-auth
+  namespace: n8n
+type: Opaque
+data:
+  user: YWRtaW4=
+  password: cGFzc3dvcmQ=
