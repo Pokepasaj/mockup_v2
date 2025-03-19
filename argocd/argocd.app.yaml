@@ -7,7 +7,7 @@ spec:
   source:
     repoURL: https://github.com/Pokepasaj/mockup_v2
     targetRevision: HEAD
-    path: templates
+    path: sqlite
     directory:
       jsonnet:
         libs:
