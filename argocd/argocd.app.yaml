@@ -9,7 +9,7 @@ spec:
     server: https://kubernetes.default.svc
     namespace: n8n-dev
   source:
-    repoURL: 'https://github.com/kosta5/mockup_v2.git'
+    repoURL: 'https://github.com/Pokepasaj/mockup_v2'
     targetRevision: HEAD
     path: 'sqlite'
   syncPolicy:
