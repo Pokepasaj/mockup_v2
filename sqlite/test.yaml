@@ -144,7 +144,7 @@ metadata:
   namespace: n8n-dev
 type: Opaque
 data:
-  password: cGFzc3dvcmQ=
+  password: cGFzc3dvcmQQ=
   user: YWRtaW4=
 ---
 # test
